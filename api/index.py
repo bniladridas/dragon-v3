@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, send_from_directory
-from google import genai
+import google.generativeai as genai
 from dotenv import load_dotenv
 import os
 
@@ -8,17 +8,21 @@ load_dotenv()
 
 app = Flask(__name__, static_folder='../')
 
-# Configure the API key from the environment variable
+# Configure the API key
 api_key = os.getenv('GOOGLE_API_KEY')
-client = genai.Client(api_key=api_key)
+genai.configure(api_key=api_key)
 
 @app.route('/generate', methods=['POST'])
 def generate_content():
     data = request.json
     prompt = data.get('prompt', 'Explain how AI works')
-    response = client.models.generate_content(
-        model='gemini-2.0-flash-exp', contents=prompt
-    )
+    
+    # Get the model
+    model = genai.GenerativeModel('gemini-pro')
+    
+    # Generate the response
+    response = model.generate_content(prompt)
+    
     return jsonify({'response': response.text})
 
 @app.route('/')
