@@ -23,7 +23,6 @@
     <meta name="keywords" content="AI, Artificial Intelligence, Dragon AI, Machine Learning, Deep Learning">
     <meta name="author" content="Dragon AI Team">
 
-
     <!-- Meta tags for social media sharing -->
     <meta property="og:title" content="Dragon AI">
     <meta property="og:description" content="Dragon AI is an advanced AI platform providing cutting-edge solutions for various industries.">
@@ -35,571 +34,803 @@
     <meta name="twitter:title" content="Dragon AI">
     <meta name="twitter:description" content="Dragon AI is an advanced AI platform providing cutting-edge solutions for various industries.">
     
-<!-- Meta tags for GitHub repository -->
+    <!-- Meta tags for GitHub repository -->
     <meta name="github:repo" content="https://github.com/bniladridas/dragon-ai">
     <meta name="github:owner" content="bniladridas">
     <meta name="github:description" content="Dragon AI is an advanced AI platform providing cutting-edge solutions for various industries.">
     <meta name="github:topics" content="AI, Artificial Intelligence, Machine Learning, Deep Learning">
 
-<!-- Custom styles for the webpage --> 
-<style>
+    <!-- Custom styles for the webpage -->
+    <style>
+    /* Custom styles for the webpage */
     :root {
-        /* Ocean Green Theme Colors */
-        --primary-color: #2E8B57;
-        --hover-color: #276749;
-        --bg-dark: #001F1F;
-        --bg-secondary: #003333;
-        --text-primary: #E0F2F1;
-        --text-secondary: #80CBC4;
-        --border-color: #004D40;
-        --bubble-user: #2E8B57;
-        --bubble-ai: #003333;
-        --sidebar-width: 300px;
-        --font-family: 'Pentium', sans-serif;
-        --code-font: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-        --shadow-color: rgba(255, 255, 255, 0.1);
-    }
-    /* Reset default styling */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    /* Body styling */
-    body {
-        font-family: var(--font-family);
-        background: var(--bg-dark);
-        color: var(--text-primary);
-        line-height: 1.6;
-    }
+    /* Enhanced Theme Colors */
+    --primary-color: #00dc82;
+    --hover-color: #00b368;
+    --bg-dark: #0a0a0a;
+    --bg-secondary: #141414;
+    --bg-tertiary: #1a1a1a;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --border-color: #2a2a2a;
+    --bubble-user: linear-gradient(135deg, #00dc82, #00b368);
+    --bubble-ai: linear-gradient(135deg, #1e1e1e, #141414);
+    --shadow-color: rgba(0, 220, 130, 0.15);
+    --sidebar-width: 300px;
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --code-font: 'JetBrains Mono', 'Fira Code', monospace;
+    --animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* Reset default styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--bg-dark);
+}
 
-    /* Sidebar Styles */
+*::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+/* Body styling */
+body {
+    font-family: var(--font-family);
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* Enhanced Sidebar Styles */
+.sidebar {
+    width: var(--sidebar-width);
+    background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-secondary) 100%);
+    border-right: 1px solid var(--border-color);
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    transition: transform 0.3s var(--animation-timing);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+/* Enhanced Sidebar button styling */
+.sidebar-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1.2rem; /* Increased padding */
+    background: linear-gradient(135deg, var(--primary-color), var(--hover-color));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    width: 100%;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+/* Hover effect for sidebar button */
+.sidebar-button:hover {
+    background: linear-gradient(135deg, var(--hover-color), var(--primary-color));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px var(--shadow-color);
+}
+
+/* Sidebar button icon styling */
+.sidebar-button i {
+    font-size: 1.5rem;
+}
+
+/* Sidebar Search */
+.sidebar-search {
+    margin-bottom: 1rem;
+}
+
+.sidebar-search input {
+    width: 100%;
+    padding: 0.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+/* Enhanced New chat button styling */
+.new-chat-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.2rem;
+    background: var(--bubble-user);
+    color: var(--bg-dark);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    transition: all 0.3s var(--animation-timing);
+    position: relative;
+    overflow: hidden;
+}
+
+.new-chat-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s var(--animation-timing);
+}
+
+.new-chat-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px var(--shadow-color);
+}
+
+.new-chat-btn:hover::before {
+    transform: translateX(100%);
+}
+
+/* Hover effect for new chat button */
+.new-chat-btn:hover {
+    background: linear-gradient(135deg, var(--hover-color), var(--primary-color));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px var(--shadow-color);
+}
+
+/* Chat history container styling */
+.chat-history {
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Individual chat history item styling */
+.history-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: 9999px;
+    color: var(--text-primary);
+    transition: background 0.2s;
+}
+
+/* Hover effect for chat history item */
+.history-item:hover {
+    background: var(--bg-secondary);
+}
+
+/* Enhanced Main content area styling */
+.main-content {
+    margin-left: var(--sidebar-width);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, var(--bg-dark), var(--bg-secondary));
+    transition: margin-left 0.3s ease;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    padding: 2rem; /* Added padding */
+}
+
+/* Chat container styling */
+.chat-container {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+/* Message styling */
+.message {
+    max-width: 80%;
+    margin-bottom: 1.5rem;
+    animation: fadeIn 0.3s ease;
+}
+
+/* User message alignment */
+.message.user {
+    margin-left: auto;
+}
+
+/* Message header styling */
+.message-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: var (--text-secondary);
+}
+
+/* Enhanced Message bubble styling */
+.message-bubble {
+    padding: 1.2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s var(--animation-timing);
+    position: relative;
+    overflow: hidden;
+}
+
+.user .message-bubble {
+    background: var(--bubble-user);
+    color: var(--bg-dark);
+    font-weight: 500;
+}
+
+.ai .message-bubble {
+    background: var(--bubble-ai);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+}
+
+.message-bubble::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s var(--animation-timing);
+}
+
+.message-bubble:hover::after {
+    transform: translateX(100%);
+}
+
+
+/* Hover effect for message bubble */
+.message-bubble:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px var(--shadow-color);
+}
+
+/* Enhanced User message bubble styling */
+.user .message-bubble {
+    background: linear-gradient(135deg, var(--bubble-user), var(--hover-color));
+    border: none;
+    color: white;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    padding: 1.2rem; /* Increased padding */
+}
+
+/* Enhanced AI message bubble styling */
+.ai .message-bubble {
+    background: linear-gradient(135deg, var(--bubble-ai), var(--bg-secondary));
+    color: var(--text-primary);
+    box-shadow: 0 4px 8px var(--shadow-color);
+    padding: 1.2rem; /* Increased padding */
+}
+
+/* Message content styling */
+.message-content {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Preformatted text styling */
+.message-content pre {
+    background: var(--bg-tertiary);
+    padding: 1.2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    position: relative;
+    margin: 1rem 0;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Code block styling */
+.message-content code {
+    font-family: var(--code-font);
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+/* Copy button styling */
+.copy-code-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--bg-secondary);
+    border: none;
+    color: var(--text-primary);
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s;
+    z-index: 10;
+}
+
+/* Hover effect for copy button */
+.copy-code-btn:hover {
+    background: var(--bg-dark);
+}
+
+/* Format buttons styling */
+.format-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.format-buttons button {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.format-buttons button:hover {
+    background: var(--bg-dark);
+}
+
+/* Send button styling */
+.input-container {
+    border-top: 1px solid var(--border-color);
+    padding: 1rem 2rem;
+    background: var(--bg-dark);
+}
+
+/* Input wrapper styling */
+.input-wrapper {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    transition: all 0.3s var(--animation-timing);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.input-wrapper:focus-within {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px var(--shadow-color);
+}
+
+.prompt-input {
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    padding: 1.2rem;
+    border: none;
+    width: 100%;
+    resize: none;
+    min-height: 60px;
+    max-height: 200px;
+    transition: all 0.3s var(--animation-timing);
+}
+
+.send-button, .voice-button {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--bubble-user);
+    border: none;
+    color: var(--bg-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s var(--animation-timing);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.send-button:hover, .voice-button:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 16px var(--shadow-color);
+}
+
+
+/* Prompt input styling */
+.prompt-input {
+    width: 100%;
+    padding: 1rem;
+    padding-right: 6rem;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    resize: none;
+    min-height: 56px;
+    max-height: 200px;
+    font-family: var(--font-family);
+}
+
+/* Focus effect for prompt input */
+.prompt-input:focus {
+    outline: none;
+}
+
+/* Placeholder styling for prompt input */
+.prompt-input::placeholder {
+    color: var(--text-secondary);
+}
+
+/* Enhanced Send button styling */
+.send-button {
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    background: linear-gradient(135deg, var(--primary-color), var (--hover-color));
+    border: none;
+    color: white;
+    width: 40px; /* Slightly larger button */
+    height: 40px; /* Slightly larger button */
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+/* Hover effect for send button */
+.send-button:hover {
+    background: var(--hover-color);
+}
+
+/* Enhanced Voice button styling */
+.voice-button {
+    position: absolute;
+    right: 4.75rem;
+    bottom: 0.75rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--hover-color));
+    border: none;
+    color: white;
+    width: 40px; /* Slightly larger button */
+    height: 40px; /* Slightly larger button */
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+/* Hover effect for voice button */
+.voice-button:hover {
+    background: var(--hover-color);
+}
+
+/* Brand styling */
+.brand {
+    position: fixed;
+    bottom: 2rem;
+    left: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    z-index: 1000;
+    text-shadow: 2px 2px var(--shadow-color);
+}
+
+/* Theme toggle button styling */
+.brand i {
+    color: var(--primary-color);
+}
+
+/* Mobile Styles */
+.mobile-menu-btn {
+    display: none;
+}
+
+/* Modal Styles */
+@media (max-width: 768px) {
     .sidebar {
-        width: var(--sidebar-width);
-        background: var(--bg-dark);
-        border-right: 1px solid var(--border-color);
-        position: fixed;
-        left: 0;
-        top: 0;
-        height: 100vh;
-        padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        z-index: 1000;
-        transition: transform 0.3s ease;
-    }
-
-    /* Sidebar Search */
-    .sidebar-search {
-        margin-bottom: 1rem;
-    }
-
-    .sidebar-search input {
-        width: 100%;
-        padding: 0.5rem;
-        background: var(--bg-secondary);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        color: var(--text-primary);
-        font-size: 1rem;
-    }
-
-    /* New chat button styling */
-    .new-chat-btn {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 1rem;
-        background: var(--primary-color);
-        color: white;
-        border: none;
-        border-radius: 9999px;
-        cursor: pointer;
-        font-size: 1.1rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        width: 100%;
-        transition: background 0.2s;
-    }
-
-    /* Hover effect for new chat button */
-    .new-chat-btn:hover {
-        background: var(--hover-color);
-    }
-
-    /* Chat history container styling */
-    .chat-history {
-        flex: 1;
-        overflow-y: auto;
-    }
-
-    /* Individual chat history item styling */
-    .history-item {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 1rem;
-        cursor: pointer;
-        border-radius: 9999px;
-        color: var(--text-primary);
-        transition: background 0.2s;
-    }
-
-     /* Hover effect for chat history item */
-    .history-item:hover {
-        background: var(--bg-secondary);
-    }
-
-     /* Main content area styling */
-    .main-content {
-        margin-left: var(--sidebar-width);
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        background: var(--bg-dark);
-        transition: margin-left 0.3s ease;
-    }
-
-    /* Chat container styling */
-    .chat-container {
-        flex: 1;
-        padding: 2rem;
-        overflow-y: auto;
-    }
-
-    /* Message styling */
-    .message {
-        max-width: 80%;
-        margin-bottom: 1.5rem;
-        animation: fadeIn 0.3s ease;
-    }
-
-    /* User message alignment */
-    .message.user {
-        margin-left: auto;
-    }
-
-    /* Message header styling */
-    .message-header {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-bottom: 0.5rem;
-        font-size: 0.95rem;
-        color: var (--text-secondary);
-    }
-
-    /* Message bubble styling */
-    .message-bubble {
-        padding: 1rem;
-        border-radius: 16px;
-        border: 1px solid var(--border-color);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        transition: transform 0.2s ease;
-    }
-
-    /* Hover effect for message bubble */
-    .message-bubble:hover {
-        transform: translateY(-2px);
-    }
-
-    /* User message bubble styling */
-    .user .message-bubble {
-        background: var(--bubble-user);
-        border: none;
-        color: white;
-    }
-
-    /* AI message bubble styling */
-    .ai .message-bubble {
-        background: var(--bubble-ai);
-        color: var(--text-primary);
-    }
-
-    /* Message content styling */
-    .message-content {
-        font-size: 1rem;
-        line-height: 1.5;
-    }
-
-    /* Preformatted text styling */
-    .message-content pre {
-        background: var(--bg-secondary);
-        padding: 1rem;
-        border-radius: 8px;
-        margin: 0.5rem 0;
-        border: 1px solid var(--border-color);
-        position: relative;
-    }
-
-    /* Code block styling */
-    .message-content code {
-        font-family: var(--code-font);
-        font-size: 0.9rem;
-    }
-
-    /* Copy button styling */
-    .copy-code-btn {
-        position: absolute;
-        top: 0.5rem;
-        right: 0.5rem;
-        background: var(--bg-secondary);
-        border: none;
-        color: var(--text-primary);
-        padding: 0.5rem;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: background 0.2s;
-        z-index: 10;
-    }
-
-    /* Hover effect for copy button */
-    .copy-code-btn:hover {
-        background: var(--bg-dark);
-    }
-
-    /* Format buttons styling */
-    .format-buttons {
-        display: flex;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-    }
-
-    .format-buttons button {
-        background: var(--bg-secondary);
-        border: 1px solid var(--border-color);
-        color: var(--text-primary);
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background 0.2s;
-    }
-
-    .format-buttons button:hover {
-        background: var(--bg-dark);
-    }
-
-    /* Send button styling */
-    .input-container {
-        border-top: 1px solid var(--border-color);
-        padding: 1rem 2rem;
-        background: var(--bg-dark);
-    }
-
-    /* Input wrapper styling */
-    .input-wrapper {
-        max-width: 768px;
-        margin: 0 auto;
-        position: relative;
-        background: var(--bg-secondary);
-        border-radius: 16px;
-        border: 1px solid var(--border-color);
-    }
-
-    /* Prompt input styling */
-    .prompt-input {
-        width: 100%;
-        padding: 1rem;
-        padding-right: 6rem;
-        background: transparent;
-        border: none;
-        color: var(--text-primary);
-        font-size: 1.1rem;
-        resize: none;
-        min-height: 56px;
-        max-height: 200px;
-        font-family: var(--font-family);
-    }
-    
-    /* Focus effect for prompt input */
-    .prompt-input:focus {
-        outline: none;
-    }
-
-    /* Placeholder styling for prompt input */
-    .prompt-input::placeholder {
-        color: var(--text-secondary);
-    }
-
-    /* Send button styling */
-    .send-button {
-        position: absolute;
-        right: 0.75rem;
-        bottom: 0.75rem;
-        background: var(--primary-color);
-        border: none;
-        color: white;
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.2s;
-    }
-
-    /* Hover effect for send button */
-    .send-button:hover {
-        background: var(--hover-color);
-    }
-
-    /* Voice button styling */
-    .voice-button {
-        position: absolute;
-        right: 4.75rem;
-        bottom: 0.75rem;
-        background: var(--primary-color);
-        border: none;
-        color: white;
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.2s;
-    }
-
-    /* Hover effect for voice button */
-    .voice-button:hover {
-        background: var(--hover-color);
-    }
-
-    /* Brand styling */
-    .brand {
-        position: fixed;
-        bottom: 2rem;
-        left: 1rem;
-        font-size: 0.9rem;
-        color: var(--text-secondary);
-        z-index: 1000;
-    }
-
-    /* Theme toggle button styling */
-    .brand i {
-        color: var(--primary-color);
-    }
-    
-    /* Mobile Styles */
-    .mobile-menu-btn {
         display: none;
     }
 
-    /* Modal Styles */
-    @media (max-width: 768px) {
-        .sidebar {
-            display: none;
-        }
-
-        .main-content {
-            margin-left: 0;
-        }
-
-        .mobile-menu-btn {
-            display: none; /* Hide the mobile menu button */
-        }
-
-        .message {
-            max-width: 90%;
-        }
-
-        .brand {
-            display: none;
-        }
-
-        .sidebar-toggle-btn {
-            display: none; /* Hide the sidebar toggle button */
-        }
-    }
-
-    /* Loading Animation */
-    .typing-indicator {
-        display: flex;
-        gap: 0.5rem;
-        padding: 1rem;
-    }
-    
-    .typing-dot {
-        width: 8px;
-        height: 8px;
-        background: var(--primary-color);
-        border-radius: 50%;
-        animation: typing 1.4s infinite ease-in-out;
-    }
-
-    .typing-dot:nth-child(2) {
-        animation-delay: 0.2s;
-    }
-
-    .typing-dot:nth-child(3) {
-        animation-delay: 0.4s;
-    }
-
-    /* Fade in animation */
-    @keyframes typing {
-        0%, 100% {
-            transform: translateY(0);
-            opacity: 0.4;
-        }
-        50% {
-            transform: translateY(-4px);
-            opacity: 1;
-        }
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* Additional Features Styling */
-    .additional-features {
-        position: fixed;
-        bottom: 7rem; /* Adjusted from 2rem to 4rem */
-        right: 1rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        z-index: 1000;
-    }
-
-    .feature-btn {
-        background: var (--bg-secondary);
-        border: 1px solid var(--border-color);
-        color: var(--text-primary);
-        padding: 0.5rem;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: background 0.2s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-    }
-
-    .feature-btn:hover {
-        background: var(--bg-dark);
-    }
-
-    .feature-btn i {
-        font-size: 1.2rem;
-    }
-
-    /* Blog-like styling for large responses */
-    .message-content h1 {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-        color: var(--primary-color);
-    }
-
-    .message-content h2 {
-        font-size: 1.75rem;
-        margin-bottom: 0.75rem;
-        color: var(--primary-color);
-    }
-
-    .message-content h3 {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-        color: var(--primary-color);
-    }
-
-    .message-content p {
-        margin-bottom: 1rem;
-        line-height: 1.8;
-    }
-
-    .message-content img {
-        max-width: 100%;
-        border-radius: 8px;
-        margin: 1rem 0;
-    }
-
-    .message-content blockquote {
-        margin: 1rem 0;
-        padding: 1rem;
-        background: var(--bg-secondary);
-        border-left: 4px solid var(--primary-color);
-        color: var(--text-secondary);
-    }
-
-    .message-content strong {
-        font-weight: bold;
-    }
-
-    .message-content em {
-        font-style: italic;
-    }
-
-    .message-content u {
-        text-decoration: underline;
-    }
-
-    /* Sidebar toggle button */
-    .sidebar-toggle-btn {
-        position: fixed;
-        top: 1rem;
-        left: var(--sidebar-width);
-        z-index: 1001;
-        background: var(--primary-color);
-        border: none;
-        color: white;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: left 0.3s ease;
-    }
-
-    .sidebar-hidden .sidebar-toggle-btn {
-        left: 0;
-    }
-
-    .sidebar-hidden .sidebar {
-        transform: translateX(-100%);
-    }
-
-    .sidebar-hidden .main-content {
+    .main-content {
         margin-left: 0;
     }
 
-    /* Hide sidebar toggle button on mobile devices */
-    @media (max-width: 768px) {
-        .sidebar-toggle-btn {
-            display: none;
-        }
+    .mobile-menu-btn {
+        display: none; /* Hide the mobile menu button */
     }
 
-    /* Share options styling */
-    .share-options {
+    .message {
+        max-width: 90%;
+    }
+
+    .brand {
         display: none;
-        flex-direction: column;
-        gap: 0.5rem;
-        position: absolute;
-        bottom: 3rem;
-        right: 0;
-        background: var(--bg-secondary);
-        padding: 0.5rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
-    .share-options.active {
-        display: flex;
+    .sidebar-toggle-btn {
+        display: none; /* Hide the sidebar toggle button */
     }
-</style>
+}
+
+/* Loading Animation */
+.typing-indicator {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+    opacity: 0.7;
+}
+
+.typing-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    animation: typing 1.4s infinite var(--animation-timing);
+}
+
+@keyframes typing {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateY(-4px) scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* Fade in animation */
+@keyframes typing {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 0.4;
+    }
+    50% {
+        transform: translateY(-4px);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.message {
+    animation: fadeIn 0.3s var(--animation-timing);
+}
+
+.history-item {
+    animation: slideIn 0.3s var(--animation-timing);
+}
+
+/* Enhanced Additional Features Styling */
+.additional-features {
+    position: fixed;
+    bottom: 7rem; /* Adjusted from 2rem to 4rem */
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 1000;
+    background: linear-gradient(135deg, var(--bg-dark), var(--bg-secondary));
+    box-shadow: 0 4px 8px var(--shadow-color);
+    padding: 1rem; /* Added padding */
+}
+
+.feature-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--hover-color));
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.feature-btn:hover {
+    background: var(--bg-dark);
+}
+
+.feature-btn i {
+    font-size: 1.2rem;
+}
+
+/* Blog-like styling for large responses */
+.message-content h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    text-shadow: 2px 2px var(--shadow-color);
+}
+
+.message-content h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+    color: var(--primary-color);
+    text-shadow: 2px 2px var(--shadow-color);
+}
+
+.message-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    text-shadow: 2px 2px var(--shadow-color);
+}
+
+.message-content p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.message-content img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.message-content blockquote {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-left: 4px solid var(--primary-color);
+    color: var(--text-secondary);
+}
+
+.message-content strong {
+    font-weight: bold;
+}
+
+.message-content em {
+    font-style: italic;
+}
+
+.message-content u {
+    text-decoration: underline;
+}
+
+/* Enhanced Sidebar toggle button styling */
+.sidebar-toggle-btn {
+    position: fixed;
+    top: 1rem;
+    left: var(--sidebar-width);
+    z-index: 1001;
+    background: linear-gradient(135deg, var(--primary-color), var(--hover-color));
+    border: none;
+    color: white;
+    width: 45px; /* Slightly larger button */
+    height: 45px; /* Slightly larger button */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transition: left 0.3s ease, transform 0.3s, box-shadow 0.3s;
+}
+
+/* Hover effect for sidebar toggle button */
+.sidebar-toggle-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px var(--shadow-color);
+}
+
+.sidebar-hidden .sidebar-toggle-btn {
+    left: 0;
+}
+
+.sidebar-hidden .sidebar {
+    transform: translateX(-100%);
+}
+
+.sidebar-hidden .main-content {
+    margin-left: 0;
+}
+
+/* Hide sidebar toggle button on mobile devices */
+@media (max-width: 768px) {
+    .sidebar-toggle-btn {
+        display: none;
+    }
+}
+
+/* Share options styling */
+.share-options {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: absolute;
+    bottom: 3rem;
+    right: 0;
+    background: var(--bg-secondary);
+    padding: 1rem; /* Added padding */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.share-options.active {
+    display: flex;
+}
+
+/* Download, Share, and Delete button styling */
+.download-btn, .share-btn, .delete-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem; /* Increased padding */
+    background: linear-gradient(135deg, var(--primary-color), var(--hover-color));
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    margin: 0.5rem;
+}
+
+/* Hover effect for buttons */
+.download-btn:hover, .share-btn:hover, .delete-btn:hover {
+    background: linear-gradient(135deg, var(--hover-color), var(--primary-color));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px var(--shadow-color);
+}
+
+/* Button icon styling */
+.download-btn i, .share-btn i, .delete-btn i {
+    font-size: 1.5rem;
+}
+    </style>
 </head>
 <body>
     <!-- Sidebar toggle button -->
