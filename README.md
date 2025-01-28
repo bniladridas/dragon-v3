@@ -63,3 +63,19 @@ Open your browser and navigate to `http://127.0.0.1:5000` to start interacting w
 
 ### Getting Help
 If you encounter any issues not covered here, please open an issue on the [GitHub repository](https://github.com/bniladridas/dragon-v3/issues).
+
+## Deployment Details
+Running build in Washington, D.C., USA (East) – iad1
+Cloning github.com/bniladridas/dragon-v3 (Branch: main, Commit: 0aa051a)
+Cloning completed: 675.000ms
+Restored build cache from previous deployment (3bHrrg8haxCEJNbFdM9kF2mLw2zM)
+Running "vercel build"
+Vercel CLI 39.3.0
+Installing required dependencies...
+Build Completed in /vercel/output [4m]
+Deploying outputs...
+▲ Build system report
+▲ To always completely log this report, add VERCEL_BUILD_SYSTEM_REPORT=1 as an Environment Variable to your project.
+• At least one "Out of Memory" ("OOM") event was detected during the build.
+  • This occurs when processes or applications running during the build completely fill up the available memory (RAM) in the build container. When this happens, the build container terminates one of the processes during the build with a SIGKILL signal.
+  • Read this troubleshooting guide for more information: https://vercel.link/troubleshoot-build-errors
