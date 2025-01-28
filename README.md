@@ -1,5 +1,7 @@
 # Dragon AI: Simple Setup Guide
 
+![bts](api/bts.png)
+
 ## How to Run Dragon AI
 
 ### Step 1: Clone the Repository
