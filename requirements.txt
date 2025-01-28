@@ -1,5 +1,3 @@
 Flask==3.0.3
 google-generativeai
 python-dotenv
-matplotlib
-# Add other dependencies here
