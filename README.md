@@ -6,8 +6,8 @@
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/bniladridas/dragon-v3.git
-cd dragon-v3
+git clone https://github.com/bniladridas/dragon-ai.git
+cd dragon-ai
 ```
 
 ### Step 2: Install Dependencies
