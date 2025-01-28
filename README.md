@@ -35,7 +35,7 @@ cp .env.example .env
 vim .env
 ```
 Ensure you add your Google API key in the `.env` file:
-```
+```bash
 GOOGLE_API_KEY=your_api_key_here
 ```
 
@@ -77,6 +77,35 @@ Open your browser and navigate to `http://127.0.0.1:5000` to start interacting w
 ### Getting Help
 If you encounter any issues not covered here, please open an issue on the [GitHub repository](https://github.com/bniladridas/dragon-v3/issues).
 
+## How the Python Code Works
+
+The Python code is a Flask application that provides two main functionalities:
+
+1. **Content Generation**:
+   - The `/generate` endpoint allows users to send a POST request with a prompt.
+   - The prompt is processed by the Google's Gemini 2.0 exp flash model to generate content.
+   - The generated content is returned as a JSON response.
+
+2. **Code Execution**:
+   - The `/execute-code` endpoint allows users to send a POST request with code to be executed.
+   - The code can be either a shell command (starting with `!`) or Python code.
+   - The output or error from the execution is returned as a JSON response.
+
+### Mermaid Model
+
+```mermaid
+graph TD
+    A[Client] --> |POST /generate| B[Flask API]
+    B --> |Request with prompt| C[Google Generative AI]
+    C --> |Generated content| B
+    B --> |Response with content| A
+
+    A --> |POST /execute-code| B
+    B --> |Request with code| D[Subprocess Execution]
+    D --> |Execution result| B
+    B --> |Response with output/error| A
+```
+
 ## Research Category: Deployment Details
 
 ```
@@ -95,3 +124,75 @@ Deploying outputs...
   • This occurs when processes or applications running during the build completely fill up the available memory (RAM) in the build container. When this happens, the build container terminates on[...]
   • Read this troubleshooting guide for more information: https://vercel.link/troubleshoot-build-errors
 ```
+
+## Google Vertex AI Gemini v2
+[Google Vertex AI Gemini v2 Documentation](https://cloud.google.com/vertex-ai/generative-ai/docs/gemini-v2)
+Google Vertex AI offers an advanced generative AI model, Gemini v2, designed to understand and generate human-like text. This model is highly effective for various applications, including content creation, customer service, and more.
+
+```plaintext
+Gemini v2 model is built to provide:
+- High-quality text generation
+- Seamless integration with other Google AI services
+- Robust performance across different tasks
+```
+
+For detailed information, visit the official [Google Vertex AI Gemini v2 Documentation](https://cloud.google.com/vertex-ai/generative-ai/docs/gemini-v2).
+
+## Gemini API Model Information
+[Gemini API Model Documentation](https://ai.google.dev/gemini-api/docs/models/gemini-v2)
+The Gemini API provides access to the Gemini v2 model, enabling developers to integrate advanced generative AI capabilities into their applications. The API supports various endpoints for text generation, model management, and more.
+
+```plaintext
+Key features of the Gemini API:
+- Easy-to-use endpoints for text generation
+- Comprehensive documentation and examples
+- Support for multiple languages and use cases
+```
+
+For more details, visit the official [Gemini API Model Documentation](https://ai.google.dev/gemini-api/docs/models/gemini-v2).
+
+## Google AI Studio
+Google AI Studio provides a comprehensive suite for developing, training, and deploying machine learning models. It allows users to choose from pre-built models or create custom models tailored to specific needs.
+
+### How to Get the Code of the Selected Model
+1. Navigate to Google AI Studio and select your desired model.
+2. Click on the "Export" button to download the model code.
+3. Integrate the downloaded code into your project.
+
+### How to Get the API
+1. In Google AI Studio, select the model to which you want to get the API access.
+2. Click on the "API" tab to get the API endpoint and authentication details.
+3. Use the provided API key and endpoint to make requests to the model.
+
+### Configuration from Google Cloud
+To configure your project to use Google AI services, follow these steps:
+
+1. **Create a Google Cloud Project**:
+   - Go to the [Google Cloud Console](https://console.cloud.google.com/).
+   - Create a new project or select an existing one.
+
+2. **Enable Required APIs**:
+   - Enable the "Cloud AI" and "Cloud Functions" APIs from the API library.
+
+3. **Set Up Authentication**:
+   - Create a service account and download the JSON key file.
+   - Set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable to the path of the JSON key file.
+
+4. **Example Configuration**:
+   ```json
+   {
+     "type": "service_account",
+     "project_id": "your-project-id",
+     "private_key_id": "your-private-key-id",
+     "private_key": "-----BEGIN PRIVATE KEY-----\nYOUR_PRIVATE_KEY\n-----END PRIVATE KEY-----\n",
+     "client_email": "your-service-account-email",
+     "client_id": "your-client-id",
+     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+     "token_uri": "https://oauth2.googleapis.com/token",
+     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+     "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/your-service-account-email"
+   }
+   ```
+
+## Invitation to Sign Up for Gemini or Google AI Program
+Interested in exploring the capabilities of Gemini or other Google AI programs? Sign up [here](https://cloud.google.com/vertex-ai/generative-ai/docs/gemini-v2) to get started with Google AI and access cutting-edge AI models for your projects.
