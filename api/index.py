@@ -18,7 +18,7 @@ def generate_content():
     prompt = data.get('prompt', 'Explain how AI works')
     
     # Get the model
-    model = genai.GenerativeModel('gemini-pro')
+    model = genai.GenerativeModel('gemini-2.0-flash-exp')
     
     # Generate the response
     response = model.generate_content(prompt)
