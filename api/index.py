@@ -49,8 +49,11 @@ def execute_code():
         app.logger.info(f"Execution result: {result.stdout}")
         return jsonify({'output': result.stdout})
     except subprocess.CalledProcessError as e:
-        app.logger.error(f"Execution error: {e.stderr}")
-        return jsonify({'error': e.stderr}), 400
+        error_message = e.stderr
+        if "Read-only file system" in error_message:
+            error_message = "ERROR: The file system is read-only. Package installations are not allowed."
+        app.logger.error(f"Execution error: {error_message}")
+        return jsonify({'error': error_message}), 400
 
 @app.route('/')
 def serve_frontend():
