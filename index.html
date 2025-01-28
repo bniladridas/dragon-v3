@@ -538,6 +538,18 @@
             white-space: pre-wrap;
             color: var(--text-primary);
         }
+
+        .footer {
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--accent-dim);
+            color: var(--text-secondary);
+        }
+
+        .footer img {
+            margin-bottom: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -982,6 +994,7 @@
             }
         }
 
+        // Initialize with one code cell
         function clearNotebookCells() {
             const cellsContainer = document.getElementById('cells-container');
             cellsContainer.innerHTML = '';
@@ -990,6 +1003,14 @@
         }
 
         // Initialize with one code cell
+        addCodeCell();
+    </script>
+    <footer class="footer">
+        <img src="https://cdn.brandfetch.io/idPv3iQPET/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B" alt="Dragon AI Logo" style="height: 40px;">
+        <p>© 2025 Dragon AI. All rights reserved.</p>
+    </footer>
+</body>
+</html>
         addCodeCell();
     </script>
 </body>
