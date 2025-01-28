@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dragon AI™ - Stealth Mode</title>
+    <title>Dragon AI™ - Code Notebook</title>
     <link rel="icon" href="https://cdn.brandfetch.io/idPv3iQPET/w/400/h/400/theme/dark/icon.jpeg?c=1dxbfHSJFAPEGdCLU4o5B" type="image/jpeg">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.7/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.7/mode-python.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.7/theme-monokai.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
@@ -17,6 +20,7 @@
             --text-secondary: #666666;
             --shadow-color: rgba(0, 255, 157, 0.1);
             --terminal-green: #00ff9d;
+            --cell-border: #2d2d2d;
         }
 
         * {
@@ -232,14 +236,34 @@
         }
 
         .submit-btn:hover {
-            background: var (--accent-dim);
+            background: var(--accent-dim);
             border-color: var(--accent-neon);
-            box-shadow: 0 0 15px var (--shadow-color);
+            box-shadow: 0 0 15px var(--shadow-color);
         }
 
         .submit-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
+        }
+
+        .clear-btn {
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent-dim);
+            padding: 1rem 2.5rem;
+            color: var(--accent-neon);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .clear-btn:hover {
+            background: var(--accent-dim);
+            border-color: var(--accent-neon);
+            box-shadow: 0 0 15px var(--shadow-color);
         }
 
         .response-area {
@@ -258,7 +282,7 @@
             display: none;
             text-align: center;
             margin: 1rem 0;
-            color: var (--accent-neon);
+            color: var(--accent-neon);
             font-size: 1.1rem;
         }
 
@@ -331,7 +355,7 @@
                 flex-direction: column;
             }
 
-            .submit-btn {
+            .submit-btn, .clear-btn {
                 width: 100%;
             }
 
@@ -340,10 +364,183 @@
                 height: 40px;
             }
         }
+
+        .code-block {
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent-dim);
+            border-radius: 4px;
+            padding: 1rem;
+            position: relative;
+            overflow: auto;
+            white-space: pre;
+            margin-top: 1rem;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent-neon);
+            border: none;
+            color: var(--bg-primary);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            transition: background 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--accent-dim);
+        }
+
+        .notebook-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+            flex: 1;
+        }
+
+        .code-cell {
+            margin-bottom: 20px;
+            border: 1px solid var(--cell-border);
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+
+        .cell-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 16px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--cell-border);
+        }
+
+        .cell-number {
+            color: var(--accent-dim);
+            font-family: monospace;
+        }
+
+        .cell-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .editor {
+            height: 120px;
+            width: 100%;
+            border: none;
+        }
+
+        .output {
+            padding: 16px;
+            background: #1a1a1a;
+            border-top: 1px solid var(--cell-border);
+            font-family: monospace;
+            white-space: pre-wrap;
+            display: none;
+            color: var(--text-primary);
+        }
+
+        .cell-button {
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent-dim);
+            color: var(--accent-neon);
+            padding: 4px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cell-button:hover {
+            background: var(--accent-dim);
+            border-color: var(--accent-neon);
+        }
+
+        .add-cell-button {
+            display: block;
+            margin: 20px auto;
+            padding: 8px 24px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent-dim);
+            color: var(--accent-neon);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-cell-button:hover {
+            background: var(--accent-dim);
+            border-color: var(--accent-neon);
+        }
+
+        .clear-cells-button {
+            display: block;
+            margin: 20px auto;
+            padding: 8px 24px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent-dim);
+            color: var(--accent-neon);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .clear-cells-button:hover {
+            background: var(--accent-dim);
+            border-color: var(--accent-neon);
+        }
+
+        .running {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .error-output {
+            color: #ff5555;
+        }
+
+        .response-cell {
+            margin-bottom: 20px;
+            border: 1px solid var(--cell-border);
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+
+        .response-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 16px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--cell-border);
+        }
+
+        .response-number {
+            color: var(--accent-dim);
+            font-family: monospace;
+        }
+
+        .response-content {
+            padding: 16px;
+            background: #1a1a1a;
+            border-top: 1px solid var(--cell-border);
+            font-family: monospace;
+            white-space: pre-wrap;
+            color: var(--text-primary);
+        }
     </style>
 </head>
 <body>
-    <!-- CEO: @bniladridas -->
     <canvas id="matrix" class="matrix-bg"></canvas>
     <div class="container">
         <header class="header">
@@ -382,6 +579,9 @@
                     <button class="submit-btn" id="submitBtn" onclick="generateContent()">
                         Execute
                     </button>
+                    <button class="clear-btn" id="clearBtn" onclick="clearResponseArea()">
+                        Clear
+                    </button>
                 </div>
                 <div class="shortcut-info">[CTRL + ENTER] to execute | [SPACE] for voice</div>
                 <div class="loading" id="loading"></div>
@@ -390,6 +590,12 @@
 
             <div class="response-area" id="responseArea"></div>
         </main>
+    </div>
+
+    <div class="notebook-container">
+        <div id="cells-container"></div>
+        <button class="add-cell-button" onclick="addCodeCell()">+ Add Code Cell</button>
+        <button class="clear-cells-button" onclick="clearNotebookCells()">Clear Notebook</button>
     </div>
 
     <script>
@@ -425,7 +631,7 @@
                 const text = chars[Math.floor(Math.random() * chars.length)];
                 ctx.fillText(text, i*fontSize, drops[i]*fontSize);
                 
-                if(drops[i]*fontSize > canvas.height && Math.random() > 0.975)
+                if(drops[i]*fontSize > canvas.height && Math.random() > .975)
                     drops[i] = 0;
                 
                 drops[i]++;
@@ -507,6 +713,21 @@
             }
         });
 
+        let responseCount = 0;
+
+        function displayResponse(response) {
+            responseCount++;
+            const responseDiv = document.createElement('div');
+            responseDiv.className = 'response-cell';
+            responseDiv.innerHTML = `
+                <div class="response-header">
+                    <span class="response-number">Response [${responseCount}]:</span>
+                </div>
+                <div class="response-content">${response}</div>
+            `;
+            responseArea.appendChild(responseDiv);
+        }
+
         async function generateResponse() {
             const prompt = promptInput.value.trim();
             if (!prompt) return;
@@ -514,7 +735,7 @@
             try {
                 submitBtn.disabled = true;
                 loading.style.display = 'block';
-                responseArea.textContent = '';
+                responseArea.innerHTML = ''; // Clear previous responses
                 errorMessage.style.display = 'none';
 
                 const response = await fetch('/generate', {
@@ -531,25 +752,41 @@
                 const data = await response.json();
                 
                 if (data.response) {
-                    typeWriter(data.response);
+                    if (data.isCode) {
+                        displayCodeBlock(data.response);
+                    } else {
+                        displayResponse(data.response);
+                    }
                 } else {
                     throw new Error(data.error || 'Command execution failed');
                 }
             } catch (error) {
                 errorMessage.textContent = `[ERROR] ${error.message}`;
                 errorMessage.style.display = 'block';
-                responseArea.textContent = '';
+                responseArea.innerHTML = '';
             } finally {
                 submitBtn.disabled = false;
                 loading.style.display = 'none';
             }
         }
 
-        function typeWriter(text, index = 0) {
-            if (index < text.length) {
-                responseArea.textContent += text.charAt(index);
-                setTimeout(() => typeWriter(text, index + 1), 10);
-            }
+        function displayCodeBlock(code) {
+            const codeBlock = document.createElement('div');
+            codeBlock.className = 'code-block';
+            codeBlock.textContent = code;
+
+            const copyBtn = document.createElement('button');
+            copyBtn.className = 'copy-btn';
+            copyBtn.textContent = 'Copy';
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(code).then(() => {
+                    copyBtn.textContent = 'Copied!';
+                    setTimeout(() => copyBtn.textContent = 'Copy', 2000);
+                });
+            });
+
+            codeBlock.appendChild(copyBtn);
+            responseArea.appendChild(codeBlock);
         }
 
         // Event Listeners
@@ -569,12 +806,16 @@
         });
 
         // Initial boot sequence effect
+        // This section displays a series of system messages to simulate a boot sequence.
+        // It adds a visual effect to the response area, showing messages one by one.
         window.addEventListener('load', () => {
             const bootMessages = [
-                '[SYSTEM] Initializing Dragon AI Terminal v1.3',
+                '[SYSTEM] Initializing Dragon AI Terminal v1.3...',
                 '[SYSTEM] Establishing secure connection...',
-                '[SYSTEM] Voice recognition module loaded',
-                '[SYSTEM] Matrix background initialized',
+                '[SYSTEM] Voice recognition module loaded.',
+                '[SYSTEM] Matrix background initialized.',
+                '[SYSTEM] Shell support enabled.',
+                '[SYSTEM] Notebook support enabled.',
                 '[SYSTEM] Ready for input.'
             ];
 
@@ -639,8 +880,14 @@
             }
         }
 
+        function clearResponseArea() {
+            responseArea.innerHTML = '';
+            errorMessage.style.display = 'none';
+        }
+
         // Event Listeners
         document.getElementById('submitBtn').addEventListener('click', generateContent);
+        document.getElementById('clearBtn').addEventListener('click', clearResponseArea);
 
         document.getElementById('promptInput').addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
@@ -648,6 +895,102 @@
                 generateContent();
             }
         });
+
+        let cellCount = 0;
+
+        function createCodeCell() {
+            cellCount++;
+            const cellDiv = document.createElement('div');
+            cellDiv.className = 'code-cell';
+            cellDiv.innerHTML = `
+                <div class="cell-header">
+                    <span class="cell-number">In [${cellCount}]:</span>
+                    <div class="cell-controls">
+                        <button class="cell-button" onclick="runCell(${cellCount})">▶ Run</button>
+                        <button class="cell-button" onclick="deleteCell(${cellCount})">🗑 Delete</button>
+                    </div>
+                </div>
+                <div id="editor-${cellCount}" class="editor"></div>
+                <div id="output-${cellCount}" class="output"></div>
+            `;
+            
+            return cellDiv;
+        }
+
+        function initializeEditor(cellNumber) {
+            const editor = ace.edit(`editor-${cellNumber}`);
+            editor.setTheme("ace/theme/monokai");
+            editor.session.setMode("ace/mode/python");
+            editor.setOptions({
+                fontSize: "14px",
+                showPrintMargin: false,
+                showGutter: true,
+                highlightActiveLine: true,
+                wrap: true
+            });
+            return editor;
+        }
+
+        function addCodeCell() {
+            const cellsContainer = document.getElementById('cells-container');
+            const cell = createCodeCell();
+            cellsContainer.appendChild(cell);
+            initializeEditor(cellCount);
+        }
+
+        function deleteCell(cellNumber) {
+            const cell = document.querySelector(`#editor-${cellNumber}`).closest('.code-cell');
+            cell.remove();
+        }
+
+        async function runCell(cellNumber) {
+            const editor = ace.edit(`editor-${cellNumber}`);
+            const code = editor.getValue();
+            const outputDiv = document.getElementById(`output-${cellNumber}`);
+            const cellHeader = outputDiv.previousElementSibling.previousElementSibling;
+            const runButton = cellHeader.querySelector('button');
+
+            if (!code.trim()) return;
+
+            outputDiv.style.display = 'block';
+            outputDiv.textContent = 'Running...';
+            runButton.classList.add('running');
+
+            try {
+                const response = await fetch('/execute-code', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ code })
+                });
+
+                const result = await response.json();
+                
+                if (result.error) {
+                    outputDiv.className = 'output error-output';
+                    outputDiv.textContent = result.error;
+                } else {
+                    outputDiv.className = 'output';
+                    outputDiv.textContent = result.output || 'Executed successfully';
+                }
+            } catch (error) {
+                outputDiv.className = 'output error-output';
+                outputDiv.textContent = 'Error executing code: ' + error.message;
+            } finally {
+                runButton.classList.remove('running');
+            }
+        }
+
+        function clearNotebookCells() {
+            const cellsContainer = document.getElementById('cells-container');
+            cellsContainer.innerHTML = '';
+            cellCount = 0;
+            addCodeCell(); // Add one initial cell
+        }
+
+        // Initialize with one code cell
+        addCodeCell();
     </script>
 </body>
 </html>
