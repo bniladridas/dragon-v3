@@ -54,6 +54,10 @@ def execute_code():
             error_message = "ERROR: The file system is read-only. Package installations are not allowed."
         app.logger.error(f"Execution error: {error_message}")
         return jsonify({'error': error_message}), 400
+    except Exception as e:
+        error_message = str(e)
+        app.logger.error(f"Execution error: {error_message}")
+        return jsonify({'error': error_message}), 400
 
 @app.route('/')
 def serve_frontend():
