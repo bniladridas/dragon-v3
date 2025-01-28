@@ -1,5 +1,18 @@
 # Dragon AI: Simple Setup Guide
 
+<!-- Adding icons for HTML, CSS, JS, Python, Run, Stream, Play, Vercel, and Google DeepMind -->
+<p align="center">
+  <img src="https://img.shields.io/badge/html-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white" alt="HTML">
+  <img src="https://img.shields.io/badge/css-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white" alt="CSS">
+  <img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" alt="JavaScript">
+  <img src="https://img.shields.io/badge/python-%233776AB.svg?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/run-%2320232a.svg?style=for-the-badge" alt="Run">
+  <img src="https://img.shields.io/badge/stream-%23ff0000.svg?style=for-the-badge" alt="Stream">
+  <img src="https://img.shields.io/badge/play-%2300d7ff.svg?style=for-the-badge" alt="Play">
+  <img src="https://img.shields.io/badge/vercel-%23ffffff.svg?style=for-the-badge&logo=vercel&logoColor=black" alt="Vercel">
+  <img src="https://img.shields.io/badge/google_deepmind-gemini_2.0_exp_flash-%23ea4335.svg?style=for-the-badge&logo=google&logoColor=white" alt="Google DeepMind">
+</p>
+
 ![bts](api/bts.png)
 
 ## How to Run Dragon AI
@@ -64,7 +77,9 @@ Open your browser and navigate to `http://127.0.0.1:5000` to start interacting w
 ### Getting Help
 If you encounter any issues not covered here, please open an issue on the [GitHub repository](https://github.com/bniladridas/dragon-v3/issues).
 
-## Deployment Details
+## Research Category: Deployment Details
+
+```
 Running build in Washington, D.C., USA (East) – iad1
 Cloning github.com/bniladridas/dragon-v3 (Branch: main, Commit: 0aa051a)
 Cloning completed: 675.000ms
@@ -77,5 +92,6 @@ Deploying outputs...
 ▲ Build system report
 ▲ To always completely log this report, add VERCEL_BUILD_SYSTEM_REPORT=1 as an Environment Variable to your project.
 • At least one "Out of Memory" ("OOM") event was detected during the build.
-  • This occurs when processes or applications running during the build completely fill up the available memory (RAM) in the build container. When this happens, the build container terminates one of the processes during the build with a SIGKILL signal.
+  • This occurs when processes or applications running during the build completely fill up the available memory (RAM) in the build container. When this happens, the build container terminates on[...]
   • Read this troubleshooting guide for more information: https://vercel.link/troubleshoot-build-errors
+```
