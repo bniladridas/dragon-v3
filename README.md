@@ -48,6 +48,19 @@ python api/index.py
 ### Step 5: Access the Web Interface
 Open your browser and navigate to `http://127.0.0.1:5000` to start interacting with Dragon AI.
 
+## Configuration for Vercel Deployment
+The project uses a `vercel.json` file to redirect all routes to the API index. This is useful for serverless deployments on Vercel. Here is the configuration:
+
+```json
+{
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/api/index" }
+  ]
+}
+```
+
+This configuration ensures that all incoming requests are handled by the `/api/index` route.
+
 ## Troubleshooting
 
 ### Common Issues
@@ -193,6 +206,183 @@ To configure your project to use Google AI services, follow these steps:
      "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/your-service-account-email"
    }
    ```
+
+## Model Configuration Examples
+
+### Gemini 1.5 Pro
+```python
+import os
+import google.generativeai as genai
+
+genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+
+generation_config = {
+  "temperature": 1,
+  "top_p": 0.95,
+  "top_k": 40,
+  "max_output_tokens": 8192,
+  "response_mime_type": "text/plain",
+}
+
+model = genai.GenerativeModel(
+  model_name="gemini-1.5-pro",
+  generation_config=generation_config,
+)
+
+chat_session = model.start_chat(history=[])
+response = chat_session.send_message("INSERT_INPUT_HERE")
+print(response.text)
+```
+
+### Gemini 1.5 Flash
+```python
+import os
+import google.generativeai as genai
+
+genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+
+generation_config = {
+  "temperature": 1,
+  "top_p": 0.95,
+  "top_k": 40,
+  "max_output_tokens": 8192,
+  "response_mime_type": "text/plain",
+}
+
+model = genai.GenerativeModel(
+  model_name="gemini-1.5-flash",
+  generation_config=generation_config,
+)
+
+chat_session = model.start_chat(history=[])
+response = chat_session.send_message("INSERT_INPUT_HERE")
+print(response.text)
+```
+
+### Gemini 1.5 Flash 8B
+```python
+import os
+import google.generativeai as genai
+
+genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+
+generation_config = {
+  "temperature": 1,
+  "top_p": 0.95,
+  "top_k": 40,
+  "max_output_tokens": 8192,
+  "response_mime_type": "text/plain",
+}
+
+model = genai.GenerativeModel(
+  model_name="gemini-1.5-flash-8b",
+  generation_config=generation_config,
+)
+
+chat_session = model.start_chat(history=[])
+response = chat_session.send_message("INSERT_INPUT_HERE")
+print(response.text)
+```
+
+### Gemini 2.0 Flash Exp
+```python
+import os
+import google.generativeai as genai
+
+genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+
+generation_config = {
+  "temperature": 1,
+  "top_p": 0.95,
+  "top_k": 40,
+  "max_output_tokens": 8192,
+  "response_mime_type": "text/plain",
+}
+
+model = genai.GenerativeModel(
+  model_name="gemini-2.0-flash-exp",
+  generation_config=generation_config,
+)
+
+chat_session = model.start_chat(history=[])
+response = chat_session.send_message("INSERT_INPUT_HERE")
+print(response.text)
+```
+
+### Gemini Exp 1206
+```python
+import os
+import google.generativeai as genai
+
+genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+
+generation_config = {
+  "temperature": 1,
+  "top_p": 0.95,
+  "top_k": 64,
+  "max_output_tokens": 8192,
+  "response_mime_type": "text/plain",
+}
+
+model = genai.GenerativeModel(
+  model_name="gemini-exp-1206",
+  generation_config=generation_config,
+)
+
+chat_session = model.start_chat(history=[])
+response = chat_session.send_message("INSERT_INPUT_HERE")
+print(response.text)
+```
+
+### Gemini 2.0 Flash Thinking Exp 01-21
+```python
+import os
+import google.generativeai as genai
+
+genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+
+generation_config = {
+  "temperature": 0.7,
+  "top_p": 0.95,
+  "top_k": 64,
+  "max_output_tokens": 65536,
+  "response_mime_type": "text/plain",
+}
+
+model = genai.GenerativeModel(
+  model_name="gemini-2.0-flash-thinking-exp-01-21",
+  generation_config=generation_config,
+)
+
+chat_session = model.start_chat(history=[])
+response = chat_session.send_message("INSERT_INPUT_HERE")
+print(response.text)
+```
+
+### Learn LM 1.5 Pro Experimental
+```python
+import os
+import google.generativeai as genai
+
+genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+
+generation_config = {
+  "temperature": 1,
+  "top_p": 0.95,
+  "top_k": 64,
+  "max_output_tokens": 8192,
+  "response_mime_type": "text/plain",
+}
+
+model = genai.GenerativeModel(
+  model_name="learnlm-1.5-pro-experimental",
+  generation_config=generation_config,
+)
+
+chat_session = model.start_chat(history=[])
+response = chat_session.send_message("INSERT_INPUT_HERE")
+print(response.text)
+```
 
 ## Invitation to Sign Up for Gemini or Google AI Program
 Interested in exploring the capabilities of Gemini or other Google AI programs? Sign up [here](https://cloud.google.com/vertex-ai/generative-ai/docs/gemini-v2) to get started with Google AI and access cutting-edge AI models for your projects.
