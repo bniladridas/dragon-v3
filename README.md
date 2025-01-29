@@ -1,5 +1,19 @@
 # Dragon AI: Simple Setup Guide
 
+## Top Priorities
+
+### Git, Bash, Python
+- Efficient code management and automation.
+- Streamlined workflows and scripting.
+
+### Vercel
+- Seamless deployment and scalability.
+- Optimized for serverless functions and static sites.
+
+### Markdown and Keyboard Lighting
+- Enhanced documentation and user experience.
+- Improved typing efficiency and aesthetic appeal.
+
 <!-- Adding icons for HTML, CSS, JS, Python, Run, Stream, Play, Vercel, and Google DeepMind -->
 <p align="center">
   <img src="https://img.shields.io/badge/html-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white" alt="HTML">
@@ -386,3 +400,6 @@ print(response.text)
 
 ## Invitation to Sign Up for Gemini or Google AI Program
 Interested in exploring the capabilities of Gemini or other Google AI programs? Sign up [here](https://cloud.google.com/vertex-ai/generative-ai/docs/gemini-v2) to get started with Google AI and access cutting-edge AI models for your projects.
+```
+
+# 👍
