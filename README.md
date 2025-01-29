@@ -400,6 +400,5 @@ print(response.text)
 
 ## Invitation to Sign Up for Gemini or Google AI Program
 Interested in exploring the capabilities of Gemini or other Google AI programs? Sign up [here](https://cloud.google.com/vertex-ai/generative-ai/docs/gemini-v2) to get started with Google AI and access cutting-edge AI models for your projects.
-```
 
 # 👍
